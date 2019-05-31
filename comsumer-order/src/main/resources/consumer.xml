@@ -13,6 +13,7 @@
     <!-- 使用multicast广播注册中心暴露服务地址 -->
 <!--    <dubbo:registry address="multicast://127.0.0.1:2181" />-->
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"  />
+    <dubbo:metadata-report address="zookeeper://127.0.0.1:2181"/>
 
 
     <!-- 生成远程服务代理，可以和本地bean一样使用orderService -->

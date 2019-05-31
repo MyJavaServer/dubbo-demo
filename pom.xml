@@ -13,35 +13,98 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>dubbo-demo</name>
     <description>Demo project for Dubbo</description>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>1.8</java.version>
+
+        <!-- 公共定义的各种包版本号-->
+        <curator-version>2.12.0</curator-version>
+        <dubbo-version>2.7.2-SNAPSHOT</dubbo-version>
+        <zookeeper-version>3.4.6</zookeeper-version>
+        <zkclient-version>0.6</zkclient-version>
+        <fastjson-version>1.2.58</fastjson-version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>2.1.5.RELEASE</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+                <version>2.1.5.RELEASE</version>
+            </dependency>
 
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <version>2.5.3</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
+
+            <!-- 公共包,各个module都可能需要用到， 避免各个m重复引入-->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator-version}</version>
+            </dependency>
+
+            <!--        dubbo-->
+            <!--        <dependency>-->
+            <!--            <groupId>com.alibaba</groupId>-->
+            <!--            <artifactId>dubbo</artifactId>-->
+            <!--            <version>2.5.3</version>-->
+            <!--            <exclusions>-->
+            <!--                <exclusion>-->
+            <!--                    <groupId>org.springframework</groupId>-->
+            <!--                    <artifactId>spring</artifactId>-->
+            <!--                </exclusion>-->
+            <!--            </exclusions>-->
+            <!--        </dependency>-->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+
+            <!--  注册中心zk-->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson-version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
