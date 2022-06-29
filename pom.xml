@@ -21,7 +21,7 @@
         <!-- 公共定义的各种包版本号-->
         <curator-version>2.12.0</curator-version>
         <dubbo-version>2.7.2-SNAPSHOT</dubbo-version>
-        <zookeeper-version>3.4.6</zookeeper-version>
+        <zookeeper-version>3.4.14</zookeeper-version>
         <zkclient-version>0.6</zkclient-version>
         <fastjson-version>1.2.58</fastjson-version>
     </properties>
